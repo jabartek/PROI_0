@@ -47,8 +47,7 @@ Matrix::~Matrix() {
     for (int i = 0; i < matrixOrder; i++) {
         delete[] values[i];
     }
-    //delete[] values;
-    //destructor will now deallocate not fully
+    delete[] values;
     std::cout << "A matrix " << this << " of some order destructed. Sad :<\n";
 }
 
@@ -86,8 +85,8 @@ Matrix &Matrix::operator=(const Matrix &matrix) {
 }
 
 Matrix &Matrix::operator+=(const Matrix &matrix) {
-    for (int i = 0; i < matrixOrder; i++) {
-        for (int j = 0; j < matrixOrder; j++) {
+    for (int i = 0; i < matrix.matrixOrder; i++) {
+        for (int j = 0; j < matrix.matrixOrder; j++) {
             values[i][j] += matrix.values[i][j];
         }
     }
@@ -95,8 +94,8 @@ Matrix &Matrix::operator+=(const Matrix &matrix) {
 }
 
 Matrix &Matrix::operator-=(const Matrix &matrix) {
-    for (int i = 0; i < matrixOrder; i++) {
-        for (int j = 0; j < matrixOrder; j++) {
+    for (int i = 0; i < matrix.matrixOrder; i++) {
+        for (int j = 0; j < matrix.matrixOrder; j++) {
             values[i][j] -= matrix.values[i][j];
         }
     }
@@ -150,7 +149,7 @@ double Matrix::calcDet() {
         for (int i = 1; i < matrixOrder; i++) {
             for (int j = 1; j < matrixOrder; j++) {
                 newMinor.values[i - 1][j - 1] = sourceCopy.values[0][0] * sourceCopy.values[i][j] -
-                                             sourceCopy.values[i][0] * sourceCopy.values[0][j];
+                                                sourceCopy.values[i][0] * sourceCopy.values[0][j];
             }
         }
         determinant = newMinor.calcDet() / (pow(sourceCopy.values[0][0], matrixOrder - 2));
