@@ -5,7 +5,9 @@
 #include "matrix.h"
 
 
-using std::ostream, std::istream, std::domain_error;
+using std::ostream;
+using std::istream;
+using std::domain_error;
 
 
 Matrix::Matrix(int order) : matrixOrder(order) {

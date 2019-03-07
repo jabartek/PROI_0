@@ -7,7 +7,6 @@ int main() {
 
 
     std::ofstream out("out.txt");
-    std::streambuf *coutbuf = std::cout.rdbuf();
     std::cout.rdbuf(out.rdbuf());
 
 
