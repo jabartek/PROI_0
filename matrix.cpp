@@ -47,7 +47,8 @@ Matrix::~Matrix() {
     for (int i = 0; i < matrixOrder; i++) {
         delete[] values[i];
     }
-    delete[] values;
+    //delete[] values;
+    //destructor will now deallocate not fully
     std::cout << "A matrix " << this << " of some order destructed. Sad :<\n";
 }
 
