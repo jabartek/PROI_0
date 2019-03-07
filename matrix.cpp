@@ -85,8 +85,11 @@ Matrix &Matrix::operator=(const Matrix &matrix) {
 }
 
 Matrix &Matrix::operator+=(const Matrix &matrix) {
-    for (int i = 0; i < matrix.matrixOrder; i++) {
-        for (int j = 0; j < matrix.matrixOrder; j++) {
+    int smallerOrder = 1;
+    if (matrixOrder > matrix.matrixOrder) smallerOrder = matrix.matrixOrder;
+    else smallerOrder = matrixOrder;
+    for (int i = 0; i < smallerOrder; i++) {
+        for (int j = 0; j < smallerOrder; j++) {
             values[i][j] += matrix.values[i][j];
         }
     }
@@ -94,8 +97,11 @@ Matrix &Matrix::operator+=(const Matrix &matrix) {
 }
 
 Matrix &Matrix::operator-=(const Matrix &matrix) {
-    for (int i = 0; i < matrix.matrixOrder; i++) {
-        for (int j = 0; j < matrix.matrixOrder; j++) {
+    int smallerOrder = 1;
+    if (matrixOrder > matrix.matrixOrder) smallerOrder = matrix.matrixOrder;
+    else smallerOrder = matrixOrder;
+    for (int i = 0; i < smallerOrder; i++) {
+        for (int j = 0; j < smallerOrder; j++) {
             values[i][j] -= matrix.values[i][j];
         }
     }
