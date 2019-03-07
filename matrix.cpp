@@ -143,14 +143,14 @@ double Matrix::calcDet() {
             }
         }
         if (sourceCopy.values[0][0] == 0) return 0;
-        Matrix minor(matrixOrder - 1);
+        Matrix newMinor(matrixOrder - 1);
         for (int i = 1; i < matrixOrder; i++) {
             for (int j = 1; j < matrixOrder; j++) {
-                minor.values[i - 1][j - 1] = sourceCopy.values[0][0] * sourceCopy.values[i][j] -
+                newMinor.values[i - 1][j - 1] = sourceCopy.values[0][0] * sourceCopy.values[i][j] -
                                              sourceCopy.values[i][0] * sourceCopy.values[0][j];
             }
         }
-        determinant = minor.calcDet() / (pow(sourceCopy.values[0][0], matrixOrder - 2));
+        determinant = newMinor.calcDet() / (pow(sourceCopy.values[0][0], matrixOrder - 2));
     }
     return determinant;
 }
