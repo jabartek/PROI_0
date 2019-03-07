@@ -45,7 +45,8 @@ Matrix::Matrix() : matrixOrder(1) {
 
 Matrix::~Matrix() {
     for (int i = 0; i < matrixOrder; i++) {
-        delete[] values[i];
+        //delete[] values[i];
+        //destructor now fails at cleaning memory
     }
     delete[] values;
     std::cout << "A matrix " << this << " of some order destructed. Sad :<\n";
@@ -98,7 +99,7 @@ Matrix &Matrix::operator+=(const Matrix &matrix) {
 
 Matrix &Matrix::operator-=(const Matrix &matrix) {
     int smallerOrder = 1;
-    /*if (matrixOrder > matrix.matrixOrder)*/ smallerOrder = matrix.matrixOrder; /*subtraction will now not work if matrix.matixOrder > matrixOrder */
+    /*if (matrixOrder > matrix.matrixOrder)*/ smallerOrder = matrix.matrixOrder; /*subtraction will now not work if matrix.matrixOrder > matrixOrder */
     //else smallerOrder = matrixOrder;
     for (int i = 0; i < smallerOrder; i++) {
         for (int j = 0; j < smallerOrder; j++) {
