@@ -102,7 +102,7 @@ Matrix &Matrix::operator-=(const Matrix &matrix) {
 
 Matrix &Matrix::operator*=(const Matrix &matrix) {
     if (matrixOrder != matrix.matrixOrder)
-        throw domain_error("Error: matrices of differing orders cannot be multiplicated.");
+        throw std::domain_error("Error: matrices of differing orders cannot be multiplicated.");
     Matrix temp(matrixOrder);
     for (int i = 0; i < matrixOrder; i++) {
         for (int j = 0; j < matrixOrder; j++) {
@@ -143,7 +143,7 @@ double Matrix::calcDet() {
             }
         }
         if (sourceCopy(0, 0) == 0) return 0;
-        Matrix minor(matrixOrder - 1);
+        Matrix minor(matrixOrder - 1, 0);
         for (int i = 1; i < matrixOrder; i++) {
             for (int j = 1; j < matrixOrder; j++) {
                 minor(i - 1, j - 1) = sourceCopy(0, 0) * sourceCopy(i, j) - sourceCopy(i, 0) * sourceCopy(0, j);
@@ -191,7 +191,7 @@ Matrix operator*(double num, const Matrix &matrix) {
     return (matrix * num);
 }
 
-ostream &operator<<(ostream &outputStream, const Matrix &matrix) {
+std::ostream &operator<<(std::ostream &outputStream, const Matrix &matrix) {
     for (int i = 0; i < matrix.matrixOrder; i++) {
         for (int j = 0; j < matrix.matrixOrder; j++) {
             outputStream << matrix.values[i][j] << " ";
@@ -201,7 +201,7 @@ ostream &operator<<(ostream &outputStream, const Matrix &matrix) {
     return outputStream;
 }
 
-istream &operator>>(istream &inputStream, Matrix &matrix) {
+istream &operator>>(std::istream &inputStream, Matrix &matrix) {
     for (int i = 0; i < matrix.matrixOrder; i++) {
         for (int j = 0; j < matrix.matrixOrder; j++) {
             inputStream >> matrix.values[i][j];
