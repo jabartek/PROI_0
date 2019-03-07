@@ -16,8 +16,6 @@ public:
 
     Matrix(const Matrix &);
 
-    inline double &operator()(int x, int y) { return values[x][y]; }
-
     Matrix &operator=(const Matrix &);
 
     Matrix &operator+=(const Matrix &);

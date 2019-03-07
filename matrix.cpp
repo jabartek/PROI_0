@@ -134,22 +134,23 @@ double Matrix::calcDet() {
                       values[2][0] * values[0][1] * values[1][2] - values[2][0] * values[1][1] * values[0][2];
     } else {
         Matrix sourceCopy(*this);
-        if (sourceCopy(0, 0) == 0) {
+        if (sourceCopy.values[0][0] == 0) {
             for (int i = 1; i < sourceCopy.matrixOrder; i++) {
-                if (sourceCopy(0, i) != 0) {
+                if (sourceCopy.values[0][i] != 0) {
                     sourceCopy.swapRows(0, i);
                     break;
                 }
             }
         }
-        if (sourceCopy(0, 0) == 0) return 0;
-        Matrix minor(matrixOrder - 1, 0);
+        if (sourceCopy.values[0][0] == 0) return 0;
+        Matrix minor(matrixOrder - 1);
         for (int i = 1; i < matrixOrder; i++) {
             for (int j = 1; j < matrixOrder; j++) {
-                minor(i - 1, j - 1) = sourceCopy(0, 0) * sourceCopy(i, j) - sourceCopy(i, 0) * sourceCopy(0, j);
+                minor.values[i - 1][j - 1] = sourceCopy.values[0][0] * sourceCopy.values[i][j] -
+                                             sourceCopy.values[i][0] * sourceCopy.values[0][j];
             }
         }
-        determinant = minor.calcDet() / (pow(sourceCopy(0, 0), matrixOrder - 2));
+        determinant = minor.calcDet() / (pow(sourceCopy.values[0][0], matrixOrder - 2));
     }
     return determinant;
 }
@@ -166,6 +167,7 @@ void Matrix::allocation() {
         values[i] = new double[matrixOrder];
     }
 }
+
 
 Matrix operator+(const Matrix &matrix1, const Matrix &matrix2) {
     Matrix temp(matrix1);
