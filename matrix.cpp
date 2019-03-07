@@ -98,8 +98,8 @@ Matrix &Matrix::operator+=(const Matrix &matrix) {
 
 Matrix &Matrix::operator-=(const Matrix &matrix) {
     int smallerOrder = 1;
-    if (matrixOrder > matrix.matrixOrder) smallerOrder = matrix.matrixOrder;
-    else smallerOrder = matrixOrder;
+    /*if (matrixOrder > matrix.matrixOrder)*/ smallerOrder = matrix.matrixOrder; /*subtraction will now not work if matrix.matixOrder > matrixOrder */
+    //else smallerOrder = matrixOrder;
     for (int i = 0; i < smallerOrder; i++) {
         for (int j = 0; j < smallerOrder; j++) {
             values[i][j] -= matrix.values[i][j];
